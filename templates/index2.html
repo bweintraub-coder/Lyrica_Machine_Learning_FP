@@ -1,0 +1,88 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>FINAL PROJECT</title>
+		<link rel="stylesheet" href="/static/css/foundation.css">
+		<script src="/static/js/myjs.js"></script>
+    </head>
+    
+	<body>
+		<div class="grid-container">
+			<div class="grid-x grid-padding-x">
+				<div class="large-12 cell">
+					<h1>Welcome to The Word Association Tool MAX 2.0</h1>
+				</div>
+			</div>
+			<div class="grid-x grid-padding-x">
+				<div class="large-12 cell">
+					<div class="callout">
+						<h3>We have painstakingly collected lyrics from many of the most popular top-40 hits  </h3>
+						<p>Using the patented "Word Association Duplexer™"©® one can generate visible representations of lyrical content.</p>
+						<p>Using the widgets below, search for one of your favorite songs</p>
+						<p>Also, be sure to check out our dev teams Github repositories</p>
+						<div class="grid-x grid-padding-x">
+							<div class="large-4 medium-4 cell">
+								<p><a href="https://github.io/richardwendel787">Richard Wendel</a><br />The man with the plan, a literal wizard of HTML and CSS</p>
+							</div>
+							<div class="large-4 medium-4 cell">
+								<p><a href="#">Group Memeber 1</a><br />This person contributed stuff</p>
+							</div>
+							<div class="large-4 medium-4 cell">
+								<p><a href="#">Group Memeber 2</a><br />This person contributed stuff</p>
+							</div>
+						</div>
+						<div class="grid-x grid-padding-x">
+							<div class="large-4 medium-4 medium-push-2 cell">
+								<p><a href="#">Group Memeber 3</a><br />This person contributed stuff</p>
+							</div>
+							<div class="large-4 medium-4 medium-pull-2 cell">
+								<p><a href="#">Group Memeber 4</a><br />This person contributed stuff</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="callout">
+				<h5>Perform a search and find your favorite song</h5>
+				<form>
+					<div class="grid-x grid-padding-x">
+						<div class="large-4 medium-4 cell">
+							<label>Song Name</label>
+							<input type="text" placeholder="Search by song" />
+						</div>
+						<div class="large-4 medium-4 cell">
+							<label>Musical Artist</label>
+							<input type="text" placeholder="Search by artist" />
+						</div>
+						<div class="large-4 medium-4 cell">
+							<label>Year</label>
+							<input type="text" placeholder="Search by year" />
+						</div>
+					</div>
+					<div class="grid-x grid-padding-x">
+						<div class="large-12 cell">
+							<label>Or, Browse all songs to pick one out</label>
+							<select>
+							
+									{% for i in range(result_len | int ) %}
+									<option value="{{ all_records[i] }}">{{ all_records[i] }}</option>
+									{% endfor %}
+
+							</select>
+							<p><button type='button' onclick="GetImage();" class="button" id="display_association">Display word association</button><br/>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div id="ShowOutput">
+	
+			</div>
+		</div>
+		<script src="/static/js/vendor.js"></script>
+		<script src="/static/js/foundation.js"></script>
+	</body>
+</html>
