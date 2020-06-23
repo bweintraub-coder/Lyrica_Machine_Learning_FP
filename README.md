@@ -1,2 +1,2 @@
 # Lyrica_Machine_Learning_FP
-A Machine Learning Project to see if we can predict if a song is popular by its lyrics.
+The goal of this project is to see if we can predict if a song will popular by its lyrcis and predict to see how long it will be on the top 100 hits.  
