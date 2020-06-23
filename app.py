@@ -1,7 +1,10 @@
-from flask import Flask,request,render_template,g,send_from_directory
+from flask import Flask,request,render_template,g,send_from_directory,jsonify
 import pandas as pd
 import sqlite3
+from wordcloud import WordCloud, STOPWORDS 
+import matplotlib.pyplot as plt 
 
+import json
 
 app=Flask(__name__,static_url_path='',static_folder='/static',template_folder="templates")
 
@@ -76,7 +79,37 @@ def main():
         result_len=len(all_records)
         print("len of reulst is {}".format(result_len))
         return render_template("index2.html",**locals())
-
+    elif request.method=="POST":
+        req=request.data
+        print("received: ")
+        print(req)
+        req=json.loads(req)
+        song=req.get('x')
+        artist=req.get('y')
+        year=req.get('z')
+        if not song and not artist and not year:
+            return ""
+        if song==None or song=="":
+            song=" '%' "
+        else:
+            song='%'+song.lower()+'%'
+        if artist==None or artist=="":
+            artist=" '%' "
+        else:
+            artist='%'+artist.lower()+'%'
+        if year==None or year=="":
+            year=" '%' "
+        else:
+            year='%'+year.lower()+'%'
+        print(song)
+        print(artist)
+        print(year)
+        query="Select Song,Performer,WeekID from relevant_data where lower(Song) like '"+song+"' or lower(Performer) like '"+artist+"' or lower(WeekID) like '"+year+"' ; "
+        print("query:")
+        print(query)
+        result=cur.execute(query).fetchall()
+        print(result)
+        return jsonify({"result":result})
 
 
 @app.route("/static/images/<path:filename>")
@@ -92,5 +125,13 @@ def getjs(filename):
 @app.route("/static/css/<path:filename>")
 def getcss(filename):
     return  send_from_directory(r"C:\Users\Owner\Desktop\Final Project\Lyrica_Machine_Learning_FP\static\css",filename)
+
+
+def MakeWordCloud(cur):
+    raise NotImplementedError()
+    result=cur.execute("Select ")
+
+
+
 
 app.run()
