@@ -25,14 +25,20 @@ function GetImage()
 
         xhr.onloadend = function () {
  
-            document.getElementById("search_result_label").innerText="Select a song from below";
+		
+           
             var response=JSON.parse(xhr.response);
+	if (response==null)
+	{
+		document.getElementById("search_result_label").innerText="Could not find any matching songs, please try again";
+		console.log(response);
+		document.getElementById("search_results_dropdown").innerHTML="";
+		return;
+	}
+	 document.getElementById("search_result_label").innerText="Select a song from below";
+		document.getElementById("search_results_dropdown").innerHTML="";
             response["result"].forEach(record => {
                 var content='<option value="'+record+'">'+record+"</option>";
-
-               // var opt=document.createElement("option");
-               // opt.setAttribute("value",record);
-               // opt.innerText=record;
                 document.getElementById("search_results_dropdown").innerHTML+=content;
             })
         }
